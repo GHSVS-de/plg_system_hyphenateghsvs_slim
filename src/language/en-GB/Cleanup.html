@@ -1,0 +1,14 @@
+<p><b>Be aware:</b> I cannot guarantee that the &quot;Cleanup&quot; feature will lead to a more performant page in any circumstance. <b>Therefore I mark this setting "experimental"</b>.</p>
+<p>I myself always use it with setting &quot;FORCE&quot; after I have configured the plugin as best as possible.</p>
+<p>Let's say you have a multilingual Joomla site (<code>de-de</code> and <code>en-gb</code>) with a language switcher. Because Hyphonopoly doesn't check if the languages that you've configured for all of your pages are really needed by the displayed page you will see error/warning/info messages in the browser console, e.g. for the german page: <code>engine for language 'en-gb' loaded, but no elements found.</code> (= <i>I couldn't find a <code>lang=en-gb</code> in current HTML code</i>).</p>
+<p>Hyphenopoly does not stop work, but it may reduce page load time if Hyphenopoly loads too many unneeded language patterns, depending on how big each file is.</p>
+<p>Although these messages are unproblematic and can assist you in correctly configuring the plugin, you can not get rid of them all by having a correct plugin configuration for a multilingual website. It is clear that in most cases a German page does not contain English content marked with <code>lang=en-gb</code> and vice versa.</p>
+<p>If you enable &quot;Cleanup&quot;, the plugin will try to remove unneeded languages from the Hyphenopoly configuration script before loading, so Hyphenopoly will not deal with them:</p>
+
+<ul>
+	<li>Option &quot;YES&quot;: If &quot;Cleanup&quot; detects that none of the configured languages are needed on the page, everything will remain unchanged (= as you configured) to let you debug the errors with Hyphenopoly console messages and/or the Log feature below.</li>
+	<li>Option &quot;FORCE&quot;: If &quot;Cleanup&quot; detects that none of the configured languages are needed on the page, the entire configuration script will be removed by the cleanup. This means that Hyphenopoly scripts are not loaded at all. This also means: No console messages from Hyphenopoly. However, the Log feature below collects messages in a log file when enabled.</li>
+</ul>
+<p>The scripts that paste the classes &quot;hyphenate&quot; and &quot;donthyphenate&quot; in the page always remain untouched.</p>
+<p>See also setting &quot;Disable Console Messages&quot;.</p>
+<p>See also setting &quot;Log&quot;.</p>

@@ -1,0 +1,33 @@
+<p>The CSS selectors that you enter in this field <b>line-by-line</b> will get a CSS class &quot;hyphenate&quot;. The content of the marked HTML element  and it's child elements will be hyphenated. The markup is the same like in a CSS file. You can enter HTML tags or CSS classes (with a leading dot) or ids (with a leading #) or nearly any other usual combinations.</p>
+
+<h5>Example with tag <b><code>body</code></b></h5>
+<p>The visible content of all HTML elements inside the page will be hyphenated because the superordinate &lt;body&gt;-Tag gets a class &quot;hyphenate&quot; (&lt;body class=&quot;hyphenate&quot;&gt;) and all child elements of a so tagged element will inherit the behavior. Normally you must then exclude many of the child elements with the setting &quot;Do-Not-Hyphenate-Selectors&quot; to disable the hyphenation for these.</p>
+<p style="color:red;font-size:1.2em">It's not recommended to configure &quot;body&quot; if you want to avoid performance issues. This means that you should only use the <code>body</code> tag for initial tests.</p>
+<p style="color:red;font-size:1.2em">Define smaller containers and more specific. In Joomla that's normally only the output of components like an article.</p>
+<p><b>Tipp for the lazy ones:</b></p>
+<ul>
+	<li>Surround <code>&lt;jdoc:include type=&quot;component&quot; /&gt;</code> inside your template-index.php with an additional &quot;div&quot; container..
+<pre>&lt;div class=&quot;makeMeHyphenated&quot;&gt;
+&lt;jdoc:include type=&quot;component&quot; /&gt;
+&lt;/div&gt;</pre>
+</li>
+<li>Then enter <code>.makeMeHyphenated</code> in this field.</li>
+<li>You can also write <code>&lt;div class=&quot;hyphenate&quot;&gt;</code> and enter a &quot;nonsense selector&quot; in this field (see below why) but enter never <code>.hyphenate</code> in this field!</li>
+</ul>
+<h5>Example with CSS class <code>.item-page</code></h5>
+<p>All tags (elements) with a class <code>item-page</code> will get automatically an additional class <code>hyphenate</code>. <code>&lt;div class=&quot;item-page something-else&quot;&gt;</code> =&gt; <code>&lt;div class=&quot;item-page something-else hyphenate&quot;&gt;</code></p>
+<h5>Example with CSS id <code>#icons</code></h5>
+<p>A <code>&lt;div id=&quot;icons&quot; class=&quot;small some-other-class&quot;&gt;</code> will become <code>&lt;div id=&quot;icons&quot; class=&quot;small some-other-class hyphenate&quot;&gt;</code></p>
+<p><strong style="color:red;">Enter 1 selector per line.</strong></p>
+<p><strong>Some more examples:</strong></p>
+<pre>.item-page
+.item p
+#icons.small
+div.container
+section.somewhere div.inside
+#myid .outside
+[itemprop="headline"]
+[itemprop="articleBody"]
+</pre>
+
+<p style="color:red;font-size:1.2em">If you leave this field empty and field &quot;Do-Not-Hyphenate-Selectors&quot; is empty, too, the plugin will NOT load the hyphenation scripts. Enter a &quot;nonsense selector&quot; like &quot;nonsensexyzzz&quot; if you want to force loading of the scripts, e.g. if you prefer to insert the classes &quot;hyphenate&quot; and &quot;donthyphenate&quot; manually in your HTML markup.</p>

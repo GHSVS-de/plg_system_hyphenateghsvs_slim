@@ -1,0 +1,22 @@
+<p>In zwei Fällen zeigt Hyphenopoly in der Konsole Ihres Browsers informative Meldungen an:</p>
+<ol>
+	<li>Hyphenopoly findet ein &quot;lang&quot;-Attribut innerhalb der Seite (z.B. <code>lang=en-gb</code>), das im Plugin nicht konfiguriert ist <u><b>und</b></u> wenn sich das gefundene Attribut in einem Bereich befindet, der getrennt werden soll (= nötiges Sprach-Pattern nicht geladen).</li>
+	<li>Hyphenopoly findet in der Plugin-Konfiguration eine Sprache, die innerhalb der Seite nicht gebraucht wird (= unnötiges Sprach-Pattern geladen).</li>
+</ol>
+<p><b>Beispiele:</b></p>
+<p><img src="../../../../../media/plg_system_hyphenateghsvs/images/hyphenopoly_console-errors.jpg" alt="" /></p>
+<ol>
+	<li><i>Element with 'en-gb' found, but 'en-gb.wasm' not loaded. Check language tags!<br />
+		= 
+		'en-gb' gefunden, aber Pattern 'en-gb.wasm' nicht geladen.
+	</i></li>
+	<li><i>engine for language 'fr' loaded, but no elements found.</i><br />
+	= <i>Pattern 'fr.wasm' geladen, aber wird gar nicht gebraucht.</i> </li>
+</ol>
+<p>&quot;Normale&quot; Besucher Ihrer Seite sehen diese Nachrichten zwar nicht und Hyphonopoly stoppt die Arbeit nicht, aber trennt möglicherweise nicht richtig.</p>
+<p><b>Diese Meldungen können sehr hilfreich sein, um Ihre Plugin-Konfiguration zu korrigieren.</b></p>
+<p>Mitteilungen vom Typ 1. teilen Ihnen mit, dass Sie keine Sprache für ein gefundenes &quot;lang&quot;-Attribut &quot;en-GB&quot; konfiguriert haben. Lösung: Konfigurieren Sie die Sprache korrekt im Plugin.</p>
+<p>Nachrichten vom Typ 2 werden fast auf jeder Joomla-Seite angezeigt, wenn Sie eine mehrsprachige Site betreiben, auch wenn Sie das Plugin für alle Sprachen richtig konfiguriert haben. Es ist klar, dass eine deutsche Seite in den meisten Fällen keine englischen Elemente enthält, die mit <code>lang=en-gb</code> gekennzeichnet sind. Und umgekehrt.</p>
+<p>Wenn Sie diese Hyphenopoly-Nachrichten in der Browser-Konsole nicht mehr benötigen, stellen Sie hier &quot;JA&quot; ein.</p>
+<p>Siehe auch Einstellung  &quot;Bereinigung&quot;.</p>
+<p>Siehe auch Einstellung  &quot;Loggen&quot;.</p>

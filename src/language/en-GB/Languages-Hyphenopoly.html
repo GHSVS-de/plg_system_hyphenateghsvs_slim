@@ -1,0 +1,25 @@
+<p><b>Don't forget to save the plugin after configuring the languages.</b></p>
+<p>Many languages are preconfigured here as examples but are deactivated. You can remove languages (red button) or add (green) or sort (blue).</p>
+<p>Hyphenopoly checks with the here configured AND ACTIVATED languages if the browser supports hyphenation without additional tools. Only if not then Hyphenopoly tries to load a so called &quot;pattern&quot; for each unsupported language. These are files with file extension <code>*.wasm</code>, e.g. <code>en-gb.wasm</code>. You can see all available language patterns in the dropdown lists of column &quot;Language (Hyphenopoly)&quot;.</p>
+<p>Normally a Joomla page has at least 1 <code>lang</code> attribute, namely inside the <code>html</code> tag, e.g. in a german page <code>&lt;html <b>lang=&quot;de-de&quot;</b> dir=&quot;ltr&quot;&gt;</code>.</p>
+<p>If you run a multilingual Joomla site with a language switcher German/English there are also english pages with <code>&lt;html <b>lang=&quot;en-gb&quot;</b> dir=&quot;ltr&quot;&gt;</code>.</p>
+<p>That means: You must configure both languages in the plugin because they have different hyphenation rules.</p>
+<p><b>Let's start with the easier one, english:</b></p>
+<ul>
+	<li>The <code>lang</code> attribute is <code>en-gb</code> and there's a pattern <code>en-gb</code> in the dropdown list in column  <code>Language (Hyphenopoly)</code>. Perfect! Select it and leave the field of column &quot;lang Attribute&quot; empty.</li>
+	<li>Enter a single and at least 12 characters long and polysyllabic word in column <code>Word</code> . For english it could be &quot;hyphenationalgorithm&quot;.</li>
+	<li>Don't forget to activate the language in column &quot;Active&quot;.</li>
+</ul>
+<p><b>Let's now configure German that needs a so called "fallback" configuration:</b></p>
+<ul>
+	<li>The lang attribute inside page HTML is &quot;de-de&quot; and, bad news, there is NO pattern de-de yet <span style="font-size:0.8em">(while I write this description in 2019)</span> in the dropdown list in column &quot;Language (Hyphenopoly)&quot;.</li>
+	<li> Try to find another similiar pattern and select it. I propose <code>de</code>.</li>
+	<li>In column  &quot;lang Attribute&quot;  enter &quot;de-de&quot;. Thus Hyphenopoly knows that it shall fall back to pattern &quot;de&quot; if it finds a <code>lang=de-de</code> in the page.</li>
+	<li>Enter a single and at least 12 characters long and polysyllabic word in column <code>Word</code> . For german it could be &quot;Silbentrennungsalgorithmus&quot;.</li>
+	<li>Don't forget to activate the language in column &quot;Active&quot;.</li>
+</ul>
+<p><b>The tabulator &quot;Cleanup &amp; Debug &amp; Log&quot; contains some infos about log messages that may help you to adjust your language settings.</b></p>
+<p><b>Keep in mind:</b></p>
+<p>Any here configured and activated language will be checked by Hyphenopoly. You should not activate unnecessary languages. Any unnecessary check eats up some performance of your site.</p>
+<p><b>Experts:</b></p>
+<p>The Word &quot;FORCEHYPHENOPOLY&quot; will force Hyphenopoly to load  language patterns even if a browser like FireFox doesn't need them. And Hyphenopoly will use its hyphenation scripts. Note: Disable CSS-hyphenation (&quot;hyphens&quot; rules) while using &quot;FORCEHYPHENOPOLY&quot; for testing purposes.</p>

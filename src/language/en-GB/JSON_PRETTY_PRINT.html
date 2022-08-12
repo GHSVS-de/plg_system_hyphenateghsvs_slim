@@ -1,0 +1,19 @@
+<p>For debug purposes. Recommended: NO</p>
+<p>If YES the created Hyphenopoly configuration snippet (a JSON string) in HTML source code looks like this (human readable):</p>
+<pre>var Hyphenopoly = {
+    "require": {
+        "de-de": "Silbentrennungsalgorithmus",
+        "en-us": "supercalifragilisticexpialidocious"
+    },
+    "fallbacks": {
+        "de-de": "de"
+    },
+    "paths": {
+        "patterndir": "/media/plg_system_hyphenateghsvs/js/hyphenopoly/patterns/",
+        "maindir": "/media/plg_system_hyphenateghsvs/js/hyphenopoly/"
+    },
+    "handleEvent": {
+        "error": function (e) {e.preventDefault();}
+    }
+};</pre>
+<p>If set to &quot;NO&quot;, the JSON string is output as a one-liner.</p>

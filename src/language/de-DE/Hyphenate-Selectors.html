@@ -1,0 +1,33 @@
+<p><span title="">Die CSS-Selektoren, die Sie in dieses Feld zeilenweise eingeben, erhalten eine CSS-Klasse &quot;hyphenate&quot;.</span> <span title="">Der Inhalt des markierten HTML-Elements und seiner untergeordneten Elemente wird getrennt.</span> <span title="">Das Markup ist dasselbe wie in einer CSS-Datei.</span> <span title="">Sie können HTML-Tags oder CSS-Klassen (mit einem führenden Punkt) oder IDs (mit einem führenden #) oder fast jede andere übliche Kombination eingeben.</span></p>
+
+<h5>Beispiel Tag <b><code>body</code></b></h5>
+<p><span title="">Der sichtbare Inhalt aller HTML-Elemente innerhalb der Seite wird getrennt, da der übergeordnete &lt;body&gt; -Tag eine Klasse &quot;hyphenate&quot; (&lt;body class=&quot;hyphenate&quot;&gt;) erhält und alle untergeordneten Elemente eines so markierten Elements das Verhalten erben.</span> <span title="">Normalerweise müssen Sie dann viele der untergeordneten Elemente mit der Einstellung &quot;Stopp-Hyphenate-Selektoren&quot; ausschließen, um die Silbentrennung für diese zu deaktivieren.</span></p>
+<p style="color:red;font-size:1.2em">Es wird nicht empfohlen, &quot;body&quot; zu konfigurieren, wenn Sie Leistungsprobleme vermeiden möchten. Das bedeutet, dass Sie den <code>body</code>-Tag nur für erste Tests verwenden sollten.</p>
+<p style="color:red;font-size:1.2em"><span title="">Sie sollten kleinere Container definieren und spezifischer.</span> <span title="">In Joomla ist das normalerweise nur die Ausgabe von Komponenten wie einem Artikel.</span></p>
+<p><b>Tipp für Faule:</b></p>
+<ul>
+	<li><span title="">Umgeben Sie <code>&lt;jdoc:include type=&quot;component&quot; /&gt;</code> in Ihrer template-index.php mit einem zusätzlichen &quot;div&quot; -Container.</span>
+		<pre>&lt;div class=&quot;makeMeHyphenated&quot;&gt;
+&lt;jdoc:include type=&quot;component&quot; /&gt;
+&lt;/div&gt;</pre>
+</li>
+<li>Dann gebe Sie in das Feld <code>.makeMeHyphenated</code> ein.</li>
+<li>Sie können auch <code>&lt;div class=&quot;hyphenate&quot;&gt;</code>schreiben und in dieses Feld einen &quot;Unsinns-Selektor&quot; eingeben (siehe unten warum), aber geben Sie in das Feld niemals <code>.hyphenate</code> ein!</li>
+</ul>
+<h5>Beispiel mit  CSS-Klasse <code>.item-page</code></h5>
+<p>Alle Tags (Elemente) mit Klasse <code>item-page</code> bekommen automatisch eine zusätzliche Klasse <code>hyphenate</code>. <code>&lt;div class=&quot;item-page something-else&quot;&gt;</code> wird zu <code>&lt;div class=&quot;item-page something-else hyphenate&quot;&gt;</code></p>
+<h5>Beispiel mit  CSS-id <code>#icons</code></h5>
+<p>Ein Element <code>&lt;div id=&quot;icons&quot; class=&quot;small some-other-class&quot;&gt;</code> wird automatisch zu <code>&lt;div id=&quot;icons&quot; class=&quot;small some-other-class hyphenate&quot;&gt;</code></p>
+<p><strong style="color:red;">Geben Sie  1 Selektor pro Zeile ein.</strong></p>
+<p><strong>Einige Beispiele:</strong></p>
+<pre>.item-page
+.item p
+#icons.small
+div.container
+section.somewhere div.inside
+#myid .outside
+[itemprop="headline"]
+[itemprop="articleBody"]
+</pre>
+
+<p style="color:red;font-size:1.2em"><span title="">Wenn Sie dieses Feld leer lassen und das Feld &quot;Stopp-Hyphenate-Selektoren&quot; ebenfalls leer ist, lädt das Plugin NICHT die Silbentrennungsskripte.</span> <span title="">Geben Sie einen &quot;Unsinns-Selektor&quot; wie &quot;nonsensexyzzz&quot; ein, wenn Sie das Laden erzwingen möchten, z.B.</span> <span title="">wenn Sie es vorziehen, die Klassen &quot;hyphenate&quot; und &quot;donthyphenate&quot; manuell in Ihr HTML-Markup einzufügen.</span></p>

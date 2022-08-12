@@ -1,0 +1,12 @@
+<p>Die CSS-Selektoren, die Sie in dieses Feld eingeben, beenden die Silbentrennung. Sie bekommen die Klasse &quot;donthyphenate&quot;. Der Inhalt des markierten HTML-Elements und seiner untergeordneten Elemente wird daher nicht getrennt. Das Markup ist dasselbe wie in einer CSS-Datei. Weitere Informationen finden Sie in der Beschreibung zur Einstellung &quot;Hyphenate-Selektoren&quot;.</p>
+
+<p style=\"color:red\">Beachten Sie: Sie können eine Klasse &quot;donthyphenate&quot; nicht durch eine Klasse &quot;hyphenate&quot; in einem untergeordneten Element aufheben, <b>wenn die Silbentrennungs-Skripts die Silbentrennung steuern</b>. Das bedeutet, dass das die Inhalte des Elements &quot;P&quot; in dem folgenden Codeausschnitt nicht getrennt werden, da das umgebende &quot;div&quot; die Klasse &quot;donthyphenate&quot; hat.</p>
+<pre>
+&lt;div class="someDiv <b>donthyphenate</b>"&gt;
+	&lt;p class="someP <b>hyphenate</b>"&gt;
+		Some text that will not be hypheanated!
+	&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+<p style="color:red;font-size:1.2em"><span title="">Wenn Sie dieses Feld leer lassen und das Feld &quot;Hyphenate-Selektoren&quot; ebenfalls leer ist, lädt das Plugin NICHT die Silbentrennung-Skripte.</span> <span title="">Siehe auch Beschreibung von &quot;Hyphenate-Selektoren&quot;.</span></p>

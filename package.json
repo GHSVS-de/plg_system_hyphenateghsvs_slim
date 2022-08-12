@@ -1,0 +1,84 @@
+{
+	"name": "plg_system_hyphenateghsvs_slim",
+	"nameReal": "plg_system_hyphenateghsvs",
+	"filename": "hyphenateghsvs",
+	"version": "2022.08.01",
+	"versionCompare": "2022.08.01",
+	"update": {
+		"type": "plugin",
+		"folder": "system",
+		"client": "site",
+		"tag": "stable",
+		"targetplatform": [
+			"3.*",
+			"4.*"
+		],
+		"namespace": ""
+	},
+	"releaseTxt": {
+		"title": "Joomla system plugin HyphenateGhsvs (Hyphonopoly-only variant)",
+		"requires": [],
+		"uses": [],
+		"language": []
+	},
+	"changelog": {
+		"projecturl": "https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim",
+		"infosDE": "",
+		"infosEN": "https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim#readme",
+		"docsDE": "",
+		"docsEN": "",
+		"lastTests": [
+			"PHP 8.0",
+			"PHP 8.1",
+			"Joomla 3.10",
+			"Joomla 4.1",
+			"Vivaldi",
+			"Firefox"
+		]
+	},
+	"minimumPhp": "7.4.2",
+	"maximumPhp": "8.999.999",
+	"minimumJoomla": "3.10.0",
+	"maximumJoomla": "4.9999.9999",
+	"allowDowngrades": "1",
+	"creationDate": "2022-08-01",
+	"licenseLong": "GNU General Public License version 3 or later; see LICENSE.txt.",
+	"copyright": "(C) 2016, G@HService Berlin Neukölln, Volkmar Volli Schlothauer.",
+	"author": {
+		"name": "G@HService Berlin Neukölln, Volkmar Volli Schlothauer",
+		"url": "https://ghsvs.de"
+	},
+	"contributors": [
+		{
+			"name": "G@HService Berlin Neukölln, Volkmar Volli Schlothauer",
+			"url": "https://ghsvs.de"
+		}
+	],
+	"bugs": "https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim/issues",
+	"homepage": "https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim#readme",
+	"keywords": [
+		"joomla",
+		"system plugin",
+		"hyphens",
+		"hyphenation",
+		"hyphenopoly"
+	],
+	"private": false,
+	"description": "Joomla system plugin. Hyphenation for browsers that do NOT support CSS property hyphens or do not support some languages. Hyphenopoly-only variant.",
+	"license": "GPL-3.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim.git"
+	},
+	"scripts": {
+		"build": "node build.js",
+		"updateCheck": "npm outdated",
+		"update": "npm update --save-dev"
+	},
+	"dependencies": {
+		"hyphenopoly": "^4.12.0"
+	},
+	"devDependencies": {},
+	"peerDependencies": {},
+	"browserslist": []
+}
