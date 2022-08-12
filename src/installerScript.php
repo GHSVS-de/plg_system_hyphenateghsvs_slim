@@ -40,6 +40,7 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 		'/media/plg_system_hyphenateghsvs/js/backend.js',
 		'/media/plg_system_hyphenateghsvs/js/buttons-ajax-uncompressed.js',
 		'/media/plg_system_hyphenateghsvs/js/buttons-ajax.js',
+		'/media/plg_system_hyphenateghsvs/js/buttons-ajax.min.js',
 		'/media/plg_system_hyphenateghsvs/js/hyphenateghsvsVanilla-uncompressed.js',
 		'/media/plg_system_hyphenateghsvs/js/Hyphenator_Loader-uncompressed.js',
 		'/media/plg_system_hyphenateghsvs/js/Hyphenator_Loader.js',
@@ -48,6 +49,8 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 		'/media/plg_system_hyphenateghsvs/js/LICENSE.txt',
 		'/media/plg_system_hyphenateghsvs/js/log-buttons-uncompressed.js',
 		'/media/plg_system_hyphenateghsvs/js/log-buttons.js',
+		'/media/plg_system_hyphenateghsvs/js/log-buttons.min.js',
+		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/Hyphenopoly.min.js',
 
 		'/media/plg_system_hyphenateghsvs/css/backend-uncompressed.css',
 
@@ -68,6 +71,8 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 	protected $deleteFolders = [
 		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/_version2.7.0',
 		'/media/plg_system_hyphenateghsvs/js/patterns',
+		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/_hyphenopoly-version',
+		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/-uncompressed',
 	];
 
 	/**
