@@ -4,7 +4,7 @@
  * @version See hyphenateghsvs.xml
  * @author G@HService Berlin Neukölln, Volkmar Volli Schlothauer
  * @copyright Copyright (C) 2016-2020, G@HService Berlin Neukölln, Volkmar Volli Schlothauer. All rights reserved.
- * @license GNU General Public License version 3 or later; see LICENSE.txt; see also LICENSE_Hyphenator.txt; see also LICENSE_Hyphenopoly.txt
+ * @license GNU General Public License version 3 or later; see LICENSE.txt; see also LICENSE_Hyphenopoly.txt
  * @authorUrl https://www.ghsvs.de
  * @link https://github.com/GHSVS-de/plg_system_hyphenateghsvs
  */
@@ -36,6 +36,27 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 		// hpb files replaced with wasm files since version 2020.07.03.
 		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/hyphenEngine.asm.js',
 		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/hyphenEngine.wasm',
+		'/media/plg_system_hyphenateghsvs/js/backend-uncompressed.js',
+		'/media/plg_system_hyphenateghsvs/js/backend.js',
+		'/media/plg_system_hyphenateghsvs/js/buttons-ajax-uncompressed.js',
+		'/media/plg_system_hyphenateghsvs/js/buttons-ajax.js',
+		'/media/plg_system_hyphenateghsvs/js/hyphenateghsvsVanilla-uncompressed.js',
+		'/media/plg_system_hyphenateghsvs/js/Hyphenator_Loader-uncompressed.js',
+		'/media/plg_system_hyphenateghsvs/js/Hyphenator_Loader.js',
+		'/media/plg_system_hyphenateghsvs/js/Hyphenator-uncompressed.js',
+		'/media/plg_system_hyphenateghsvs/js/Hyphenator.js',
+		'/media/plg_system_hyphenateghsvs/js/LICENSE.txt',
+		'/media/plg_system_hyphenateghsvs/js/log-buttons-uncompressed.js',
+		'/media/plg_system_hyphenateghsvs/js/log-buttons.js',
+
+		'/media/plg_system_hyphenateghsvs/css/backend-uncompressed.css',
+
+		'/plugins/system/hyphenateghsvs/language/de-DE/Cleanup.html',
+		'/plugins/system/hyphenateghsvs/language/en-GB/Cleanup.html',
+		'/plugins/system/hyphenateghsvs/myforms/languages-subform.xml',
+		'/plugins/system/hyphenateghsvs/LICENSE_Hyphenator.txt',
+		'/plugins/system/hyphenateghsvs/fields/logbuttons.php',
+
 	];
 
 	/**
@@ -45,7 +66,8 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 	 * @since  2.0
 	 */
 	protected $deleteFolders = [
-		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/_version2.7.0'
+		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/_version2.7.0',
+		'/media/plg_system_hyphenateghsvs/js/patterns',
 	];
 
 	/**

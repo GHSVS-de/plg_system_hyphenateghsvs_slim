@@ -1,0 +1,1 @@
+function Hyphenateghsvs(e,s){this.elementList=(s||document).querySelectorAll(e)}Hyphenateghsvs.prototype.addClass=function(e){var s,t;for(s=0;s<this.elementList.length;s++)t=this.elementList[s],t.className&&(t.className+=" "),t.className+=e};

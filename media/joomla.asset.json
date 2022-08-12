@@ -1,0 +1,33 @@
+{
+	"$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+	"assets": [
+		{
+			"name": "plg_system_hyphenateghsvs.add_hypenate_css",
+			"description": "Inline STYLE tag. See setting 'add_hypenate_css'.",
+			"content": ".hyphenate{word-wrap:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;-o-hyphens:auto;hyphens:auto}.donthyphenate{word-wrap:break-word;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;-o-hyphens:none;hyphens:none}",
+			"inline": true,
+			"type": "style",
+			"version": "{{version}}",
+			"weight": 1000,
+			"attributes": {
+				"id": "plg_system_hyphenateghsvs-add_hypenate_css"
+			}
+		},
+		{
+			"name": "plg_system_hyphenateghsvs.vanilla",
+			"description": "Contains basic functions for setting .hyphenate/.donthyphenate classes.",
+			"type": "script",
+			"uri": "plg_system_hyphenateghsvs/hyphenateghsvsVanilla.js",
+			"weight": -1000,
+			"version": "{{version}}"
+		},
+		{
+			"name": "nur-ein-test",
+			"description": "",
+			"type": "script",
+			"uri": "plg_system_hyphenateghsvs/hyphenateghsvsVanilla.js",
+			"weight": -1000,
+			"version": "{{versionSub}}"
+		}
+	]
+}

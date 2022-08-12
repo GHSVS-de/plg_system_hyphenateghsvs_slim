@@ -4,18 +4,22 @@
  * @version See hyphenateghsvs.xml
  * @author G@HService Berlin Neukölln, Volkmar Volli Schlothauer
  * @copyright Copyright (C) 2016-2019, G@HService Berlin Neukölln, Volkmar Volli Schlothauer. All rights reserved.
- * @license GNU General Public License version 3 or later; see LICENSE.txt; see also LICENSE_Hyphenator.txt
+ * @license GNU General Public License version 3 or later; see LICENSE.txt; see also LICENSE_Hyphenopoly.txt
  * @authorUrl https://www.ghsvs.de
  * @link https://github.com/GHSVS-de/plg_system_hyphenateghsvs
  */
 ?>
 <?php
 defined('JPATH_BASE') or die;
+
+use Joomla\CMS\Factory;
 use Joomla\CMS\Filter\InputFilter;
 use Joomla\Registry\Registry;
 
 class PlgHyphenateGhsvsHelper
 {
+	protected static $loaded;
+
 	public static function prepareSelectors($string)
 	{
 		if (!trim($string))
@@ -48,25 +52,11 @@ class PlgHyphenateGhsvsHelper
 	/**
 	 * Prepare/initialise $this->require and $this->fallbacks
 	 */
-	public static function getRequiredAndFallback($isHypenopoly, $params, &$require, &$fallbacks)
+	public static function getRequiredAndFallback($params, &$require, &$fallbacks)
 	{
-		$languagesKey = 'languages';
+		$languages = $params->get('languageshyphenopoly', null);
 
-		if ($isHypenopoly)
-		{
-			$languagesKey .= 'hyphenopoly';
-		}
-		else
-		{
-			if (!isset($required['en']))
-			{
-				$require['en'] = 'hyphenationalgorithm';
-			}
-		}
-
-		$languages = $params->get($languagesKey, null);
-
-		if (!empty($languages) && is_object($languages))
+		if (\is_object($languages) && \count(get_object_vars($languages)))
 		{
 			foreach ($languages as $language)
 			{
@@ -75,11 +65,9 @@ class PlgHyphenateGhsvsHelper
 				if (
 					$language->get('active', 0)
 					&& ($lang = $language->get('lang', ''))
-					// B\C Hyphenator:
-					&& !is_numeric($lang)
 					&& ($langtext = str_replace(' ', '', $language->get('langtext', '')))
 				) {
-					if ($isHypenopoly && ($langTag = trim($language->get('langTag', ''))))
+					if ($langTag = trim($language->get('langTag', '')))
 					{
 						$require[$langTag] = $langtext;
 						$fallbacks[$langTag] = $lang;
@@ -98,31 +86,56 @@ class PlgHyphenateGhsvsHelper
 		return !empty($require);
 	}
 
-	public static function log($logFile, $data)
+	public static function removeJPATH_SITE($str)
 	{
-		if ($logFile)
+		return str_replace(JPATH_SITE, '', $str);
+	}
+
+	public static function getMediaVersion()
+	{
+		if (!isset(self::$loaded[__METHOD__]))
 		{
-			$data = PlgSystemHyphenateGhsvs::removeJPATH_SITE(strip_tags($data));
+			self::$loaded[__METHOD__] = json_decode(file_get_contents(
+				__DIR__ . '/package.json'))->version;
+		}
 
-			$lines = [];
+		return self::$loaded[__METHOD__];
+	}
 
-			if (is_file($logFile))
+	/*
+	csp_nonce of HTTP Header plugin
+	*/
+	public static function getNonce($app)
+	{
+		if (!isset(self::$loaded[__METHOD__]))
+		{
+			if (self::$loaded[__METHOD__] = $app->get('csp_nonce', ''))
 			{
-				$lines = file($logFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-				//$lines = array_map('TRIM', $lines);
-				$lines = array_flip($lines);
-			}
-
-			if (!isset($lines[$data]))
-			{
-				$date = '--DATE: ' . date('Y-m-d', time());
-
-				if (!isset($lines[$date]))
-				{
-					file_put_contents($logFile, $date . "\n", FILE_APPEND);
-				}
-				file_put_contents($logFile, $data . "\n", FILE_APPEND);
+				self::$loaded[__METHOD__] = ' nonce="' . self::$loaded[__METHOD__] . '"';
 			}
 		}
+
+		return self::$loaded[__METHOD__];
+	}
+
+	/*
+	At the moment just for adding $version in some cases.
+	*/
+	public static function cloneAndUseWamAsset(String $type, String $wamName, Array $options)
+	{
+		$wa = PlgSystemHyphenateGhsvs::getWa();
+		$war = $wa->getRegistry();
+		$asset = $war->get($type, $wamName);
+		$war->remove($type, $wamName);
+		$war->add($type,
+			$war->createAsset(
+				$wamName,
+				$asset->getUri(false),
+				array_merge($asset->getOptions(), $options),
+				// $asset->getAttributes(),
+				// $asset->getDependencies(),
+			)
+		);
+		$wa->useAsset($type, $wamName);
 	}
 }

@@ -18,8 +18,8 @@
 	"releaseTxt": {
 		"title": "Joomla system plugin HyphenateGhsvs (Hyphonopoly-only variant)",
 		"requires": [],
-		"uses": [],
-		"language": []
+		"uses": ["https://github.com/mnater/Hyphenopoly"],
+		"language": ["de-DE", "en-GB"]
 	},
 	"changelog": {
 		"projecturl": "https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim",
@@ -32,6 +32,7 @@
 			"PHP 8.1",
 			"Joomla 3.10",
 			"Joomla 4.1",
+			"Joomla 4.2",
 			"Vivaldi",
 			"Firefox"
 		]

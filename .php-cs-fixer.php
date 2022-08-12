@@ -7,7 +7,6 @@ $mainFinder = PhpCsFixer\Finder::create()
 		[
 			__DIR__ . '/src',
 		]
-
 	);
 
 $config = new PhpCsFixer\Config();

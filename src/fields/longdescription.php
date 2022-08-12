@@ -4,14 +4,14 @@
  * @version See hyphenateghsvs.xml
  * @author G@HService Berlin Neukölln, Volkmar Volli Schlothauer
  * @copyright Copyright (C) 2016-2019, G@HService Berlin Neukölln, Volkmar Volli Schlothauer. All rights reserved.
- * @license GNU General Public License version 3 or later; see LICENSE.txt; see also LICENSE_Hyphenator.txt; see also LICENSE_Hyphenopoly.txt
+ * @license GNU General Public License version 3 or later; see LICENSE.txt; see also LICENSE_Hyphenopoly.txt
  * @authorUrl https://www.ghsvs.de
  * @link https://github.com/GHSVS-de/plg_system_hyphenateghsvs
  */
 /*
 GHSVS 2019-02-01
 Usage:
-<field name="LongDescription001" 
+<field name="LongDescription001"
 		type="plgSystemHyphenateGhsvs.longdescription" // Mandatory.
 		hiddenLabel="true" // Recommended.
 		additionalClass="optional irgendwas" // Optional-
@@ -19,27 +19,27 @@ Usage:
 		contentToggler="true" // Optional. Hide the Description plus a show/hide button.
 		contentTogglerLabel="WAHT_EVER_STRING" // Optional. Default PLG_HYPHENATEGHSVS_SHOW_HIDE_BUTTON
 		/>
-		
+
 Language string/descriptiontext can contain something like
 
-{INCLUDE-FILE:/plugins/system/hyphenateghsvs/LICENSE_Hyphenator.txt}
+{INCLUDE-FILE:/plugins/system/hyphenateghsvs/LICENSE_blaba.txt}
 
 Start with "/" if file is somewhere in the JoomlaROOT and not in /language/.
-Just file name 
-{INCLUDE-FILE:LICENSE_Hyphenator.txt}
+Just file name
+{INCLUDE-FILE:LICENSE_blaba.txt}
 if file is in language/xy-XY/ folder.
 
 if you don't want nl2br for thr output:
-{INCLUDE-FILE:plugins/system/hyphenateghsvs/LICENSE_Hyphenator.txt:no-nl}
+{INCLUDE-FILE:plugins/system/hyphenateghsvs/LICENSE_blaba.txt:no-nl}
 or shortcut (just trailing colon ':')
-{INCLUDE-FILE:plugins/system/hyphenateghsvs/LICENSE_Hyphenator.txt:}
+{INCLUDE-FILE:plugins/system/hyphenateghsvs/LICENSE_blaba.txt:}
 
 to include a text file.addParams
 
 Language string/descriptiontext can contain something like
 {HEAD-LINE:Setting <code>Fallback Languages</code> <b>(Hyphenopoly)</b>:}
 Only 1 occurence is allowed.
-To create a headline. 
+To create a headline.
 */
 
 defined('JPATH_PLATFORM') or die;
