@@ -64,8 +64,9 @@ let versionSub = '';
 		)
 	);
 
+	// Hyphenopoly_Loader.js loads ecplicitly Hyphenopoly.js which should be a minified one.
 	from = `${source}/Hyphenopoly.js`;
-	to = `${target}/Hyphenopoly.js`;
+	to = `${target}/Hyphenopoly.uncompressed.js`;
 	await fse.copy(from, to
 	).then(
 		answer => console.log(
@@ -91,8 +92,9 @@ let versionSub = '';
 		)
 	);
 
+	// Hyphenopoly_Loader.js loads ecplicitly Hyphenopoly.js which should be a minified one.
 	from = `${source}/min/Hyphenopoly.js`;
-	to = `${target}/Hyphenopoly.min.js`;
+	to = `${target}/Hyphenopoly.js`;
 	await fse.copy(from, to
 	).then(
 		answer => console.log(
