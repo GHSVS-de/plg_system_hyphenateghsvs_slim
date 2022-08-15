@@ -1,6 +1,8 @@
 # PLG_SYSTEM_HYPHENATEGHSVS_SLIM aka PLG_SYSTEM_HYPHENATEGHSVS
 
-Joomla system plugin. Hyphenation for browsers that do NOT support CSS property hyphens or do not support some languages. Hyphenopoly-only variant.
+Joomla system plugin. Hyphenation for browsers that do NOT support CSS property hyphens or do not support some languages.
+
+Hyphenopoly-only variant.
 
 This plugin replaces plugin [PLG_SYSTEM_HYPHENATEGHSVS](https://github.com/GHSVS-de/plg_system_hyphenateghsvs) that additionally provides old Hyphenator JavaScript library from https://github.com/mnater/Hyphenator programmed by Mathias Nater (mnater)
 
@@ -9,7 +11,9 @@ Intelligent Hyphenation for browsers that do NOT support CSS property `hyphens` 
 ## Description/Documentation
 See configuration options inside the plugin after installation.
 
-You can report issues, ask questions in english or german: https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim/issues or via email (see https://ghsvs.de/kontakt)
+You can report issues, ask questions in english or german:
+- [Issues](https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim/issues)
+- or via email (see https://ghsvs.de/kontakt)
 
 ## Thanks
 This Joomla plugin provides Hyphenopoly JavaScript library from https://github.com/mnater/Hyphenopoly programmed by Mathias Nater (mnater).
