@@ -56,10 +56,9 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 
 		'/plugins/system/hyphenateghsvs/language/de-DE/Cleanup.html',
 		'/plugins/system/hyphenateghsvs/language/en-GB/Cleanup.html',
-		'/plugins/system/hyphenateghsvs/myforms/languages-subform.xml',
 		'/plugins/system/hyphenateghsvs/LICENSE_Hyphenator.txt',
 		'/plugins/system/hyphenateghsvs/fields/logbuttons.php',
-
+		'/plugins/system/hyphenateghsvs/helper.php',
 	];
 
 	/**
@@ -71,6 +70,7 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 	protected $deleteFolders = [
 		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/_version2.7.0',
 		'/media/plg_system_hyphenateghsvs/js/patterns',
+		'/plugins/system/hyphenateghsvs/myforms',
 		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/_hyphenopoly-version',
 		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/-uncompressed',
 	];

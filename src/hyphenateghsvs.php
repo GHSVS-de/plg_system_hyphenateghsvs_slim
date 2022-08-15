@@ -16,25 +16,27 @@ See LICENSE_Hyphenopoly.txt.
 ?>
 <?php
 defined('JPATH_BASE') or die;
+
+if (version_compare(JVERSION, '4', 'lt'))
+{
+	JLoader::registerNamespace(
+		'Joomla\Plugin\System\HyphenateGhsvs',
+		__DIR__ . '/src',
+		false,
+		false,
+		'psr4'
+	);
+}
+
 use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\Path;
 use Joomla\CMS\Filter\InputFilter;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\CMS\Language\Text;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Uri\Uri;
+use Joomla\Plugin\System\HyphenateGhsvs\Helper\HyphenateGhsvsHelper;
 use Joomla\Registry\Registry;
-
-/*
-Bugfix for Joomla 4, at least with Cassiopeia.
-Register helper early. Under some weird circumstances you can get an error
-"Class "PlgHyphenateGhsvsHelper" not found".
-For example when you remove the snippet
-"<jdoc:include type="metas" />"
-in template's index.php.
-*/
-JLoader::register('PlghyphenateghsvsHelper', __DIR__ . '/helper.php');
 
 class PlgSystemHyphenateGhsvs extends CMSPlugin
 {
@@ -86,9 +88,9 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 		}
 
 		$wa = self::getWa();
-		$nonce = PlgHyphenateGhsvsHelper::getNonce($this->app);
+		$nonce = HyphenateGhsvsHelper::getNonce($this->app);
 		$doc = $this->app->getDocument();
-		$version = JDEBUG ? time() : PlgHyphenateGhsvsHelper::getMediaVersion();
+		$version = JDEBUG ? time() : HyphenateGhsvsHelper::getMediaVersion();
 
 		if ($this->params->get('add_hypenate_css', 0))
 		{
@@ -105,8 +107,8 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 			}
 		}
 
-		$hyphenate     = PlghyphenateghsvsHelper::prepareSelectors($this->params->get('hyphenate', ''));
-		$donthyphenate = PlghyphenateghsvsHelper::prepareSelectors($this->params->get('donthyphenate', ''));
+		$hyphenate     = HyphenateGhsvsHelper::prepareSelectors($this->params->get('hyphenate', ''));
+		$donthyphenate = HyphenateGhsvsHelper::prepareSelectors($this->params->get('donthyphenate', ''));
 
 		if (!$hyphenate && !$donthyphenate)
 		{
@@ -117,7 +119,7 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 		}
 
 		// Prepare $this->require and $this->fallbacks
-		$hasFound = PlgHyphenateGhsvsHelper::getRequiredAndFallback(
+		$hasFound = HyphenateGhsvsHelper::getRequiredAndFallback(
 			$this->params,
 			$this->require,
 			$this->fallbacks
@@ -141,7 +143,7 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 				'maindir' => Path::clean(
 					Uri::root(true) . '/media/' . self::$basepath . '/js/hyphenopoly/',
 					'/'
-				)
+				),
 			];
 
 			$this->setup['hide'] = $this->params->get('setup_hide', 'all');
@@ -232,7 +234,7 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 				$cleans = [];
 				$params = new Registry($table->params);
 				$subformData = $params->get($fieldName);
-				$file = __DIR__ . '/myforms/' . $file . '.xml';
+				$file = __DIR__ . '/src/Form/' . $file . '.xml';
 
 				if (
 					!is_object($subformData) || !count(get_object_vars($subformData))

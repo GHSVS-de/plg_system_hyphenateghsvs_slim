@@ -13,7 +13,7 @@
 			"3.*",
 			"4.*"
 		],
-		"namespace": ""
+		"namespace": "Joomla\\Plugin\\System\\HyphenateGhsvs"
 	},
 	"releaseTxt": {
 		"title": "Joomla system plugin HyphenateGhsvs (Hyphonopoly-only variant)",

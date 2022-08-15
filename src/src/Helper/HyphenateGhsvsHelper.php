@@ -10,13 +10,15 @@
  */
 ?>
 <?php
-defined('JPATH_BASE') or die;
 
-use Joomla\CMS\Factory;
+namespace Joomla\Plugin\System\HyphenateGhsvs\Helper;
+
+\defined('JPATH_BASE') or die;
+
 use Joomla\CMS\Filter\InputFilter;
 use Joomla\Registry\Registry;
 
-class PlgHyphenateGhsvsHelper
+class HyphenateGhsvsHelper
 {
 	protected static $loaded;
 
@@ -96,7 +98,8 @@ class PlgHyphenateGhsvsHelper
 		if (!isset(self::$loaded[__METHOD__]))
 		{
 			self::$loaded[__METHOD__] = json_decode(file_get_contents(
-				__DIR__ . '/package.json'))->version;
+				__DIR__ . '/../../package.json'
+			))->version;
 		}
 
 		return self::$loaded[__METHOD__];
@@ -121,13 +124,14 @@ class PlgHyphenateGhsvsHelper
 	/*
 	At the moment just for adding $version in some cases.
 	*/
-	public static function cloneAndUseWamAsset(String $type, String $wamName, Array $options)
+	public static function cloneAndUseWamAsset(String $type, String $wamName, array $options)
 	{
 		$wa = PlgSystemHyphenateGhsvs::getWa();
 		$war = $wa->getRegistry();
 		$asset = $war->get($type, $wamName);
 		$war->remove($type, $wamName);
-		$war->add($type,
+		$war->add(
+			$type,
 			$war->createAsset(
 				$wamName,
 				$asset->getUri(false),
