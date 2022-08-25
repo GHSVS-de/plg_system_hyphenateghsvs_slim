@@ -74,39 +74,28 @@
 			<fieldset name="hypenateSelectors" label="PLG_HYPHENATEGHSVS_FIELDSET_SELECTORS" description="">
 
 <!--HYPHENATE SELECTORS-->
-				<field name="hyphenateNote" type="plgSystemHyphenateGhsvs.longdescription"
-					hiddenLabel="true"
-					additionalClass="hyphenate"
-					descriptiontext="PLG_SYSTEM_HYPHENATEGHSVS_HYPHENATE_DESC"
-					contentToggler="true" />
+				<field name="hyphenateNote" type="note" class="alert alert-info" close="true"
+					label="PLG_SYSTEM_HYPHENATEGHSVS_HYPHENATE"
+					description="PLG_SYSTEM_HYPHENATEGHSVS_HYPHENATE_DESC"/>
 
 				<field name="hyphenate" type="textarea" default=""
-					label="PLG_SYSTEM_HYPHENATEGHSVS_HYPHENATE"
-					description="" />
+					label="PLG_SYSTEM_HYPHENATEGHSVS_HYPHENATE"/>
 
 <!--DONTHYPHENATE SELECTORS-->
-				<field name="donthyphenateNote" type="plgSystemHyphenateGhsvs.longdescription"
-					hiddenLabel="true"
-					additionalClass="donthyphenate"
-					descriptiontext="PLG_SYSTEM_HYPHENATEGHSVS_DONTHYPHENATE_DESC"
-					contentToggler="true" />
+				<field name="donthyphenateNote" type="note" class="alert alert-info" close="true"
+					label="PLG_SYSTEM_HYPHENATEGHSVS_DONTHYPHENATE"
+					description="PLG_SYSTEM_HYPHENATEGHSVS_DONTHYPHENATE_DESC"/>
 
 				<field name="donthyphenate" type="textarea" default=""
-					label="PLG_SYSTEM_HYPHENATEGHSVS_DONTHYPHENATE"
-					description="" />
+					label="PLG_SYSTEM_HYPHENATEGHSVS_DONTHYPHENATE"/>
 
 <!--ADD_HYPENATE_CSS-->
-				<field name="add_hypenate_cssNote" type="plgSystemHyphenateGhsvs.longdescription"
-					hiddenLabel="true"
-					additionalClass="add_hypenate_css"
-					descriptiontext="PLG_HYPHENATEGHSVS_ADD_HYPENATE_CSS_DESC"
-					contentToggler="true" />
-
-				<field name="add_hypenate_css" type="radio" default="1"
-					class="switcher btn-group btn-group-yesno"
+				<field name="add_hypenate_cssNote" type="note" class="alert alert-info" close="true"
 					label="PLG_HYPHENATEGHSVS_ADD_HYPENATE_CSS"
-					description=""
-					filter="integer">
+					description="PLG_HYPHENATEGHSVS_ADD_HYPENATE_CSS_DESC"/>
+
+				<field name="add_hypenate_css" type="list" default="1" filter="integer"
+					label="PLG_HYPHENATEGHSVS_ADD_HYPENATE_CSS">
 						<option value="0">JNO</option>
 						<option value="1">JYES</option>
 				</field>
