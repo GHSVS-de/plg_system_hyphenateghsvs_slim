@@ -47,6 +47,7 @@ let versionSub = '';
 	await helper.cleanOut(cleanOuts);
 
 	await helper.mkdir('./package');
+	await helper.mkdir('./dist');
 
 	versionSub = await helper.findVersionSubSimple (
 		path.join(__dirname, source, `package.json`),
@@ -128,6 +129,15 @@ let versionSub = '';
 		)
 	);
 
+	// Used by plugin Thanks & Licenses.
+	to =  `./dist/LICENSE_Hyphenopoly.txt`;
+	await fse.copy(from, to
+	).then(
+		answer => console.log(
+			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
+		)
+	);
+
 	from = `./package.json`;
 	to =  `./package/package.json`;
 	await fse.copy(from, to
@@ -145,8 +155,6 @@ let versionSub = '';
 			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
 		)
 	);
-
-	await helper.mkdir('./dist');
 
 	from = path.resolve('package', 'media', 'joomla.asset.json');
 	replaceXmlOptions.xmlFile = from;

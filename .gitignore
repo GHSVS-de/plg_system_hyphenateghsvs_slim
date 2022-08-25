@@ -18,5 +18,6 @@ src/vendor/bin/pscss
 src/vendor/scssphp/scssphp/bin/pscss
 /dist/*.xml
 /dist/*.txt
+!/dist/LICENSE_Hyphenopoly.txt
 /dist/*.json
 _composer/vendor
