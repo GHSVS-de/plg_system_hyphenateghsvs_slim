@@ -185,13 +185,11 @@
 
 				<field name="forceRenewalDaysSpacer" type="note" close="true" class="alert alert-info"
 					label="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS"
-					description="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS_DESC"
-					showon="forceRenewal:0"/>
+					description="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS_DESC"/>
 
 				<field name="forceRenewalDays" type="number" min="0" default="90"
 					filter="integer"
-					label="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS"
-					showon="forceRenewal:0"/>
+					label="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS"/>
 
 			</fieldset><!--/debug-->
 
