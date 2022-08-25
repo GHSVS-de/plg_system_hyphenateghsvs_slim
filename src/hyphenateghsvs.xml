@@ -47,29 +47,19 @@
 
 			<fieldset name="basic">
 				<field type="hidden" default="1" name="{{filename}}plugin" />
-			</fieldset><!--/basic-->
-
-			<fieldset name="thanks" label="PLG_HYPHENATEGHSVS_FIELDSET_TANKS_AND_LICENSES">
-				<field name="spacerthanks" type="plgSystemHyphenateGhsvs.longdescription"
-					descriptiontext="PLG_HYPHENATEGHSVS_SPACERTHANKS"
-					hidden="true"
-					additionalClass="thanks" />
-			</fieldset><!--/thanks-->
-
-			<fieldset name="long_description" label="PLG_HYPHENATEGHSVS_FIELDSET_LONG_DESCRIPTION">
-
-				<field name="version" type="plgSystemHyphenateGhsvs.version"
-					label="JVERSION"
-					description=""/>
-
-				<field name="long_descriptiomNote" type="plgSystemHyphenateGhsvs.longdescription"
-					descriptiontext="{INCLUDE-FILE:Long-Description.html:}"
-					hidden="true"
-					additionalClass="long_descriptiom" />
 
 				<field name="assetsbe" type="plgSystemHyphenateGhsvs.assetsbe" hidden="true"
 					loadjs="false" loadcss="true" />
-			</fieldset><!--/long_description-->
+			</fieldset><!--/basic-->
+
+			<fieldset name="thanks" label="PLG_HYPHENATEGHSVS_FIELDSET_TANKS_AND_LICENSES">
+
+				<field name="version" type="plgSystemHyphenateGhsvs.version"
+					label="JVERSION"/>
+
+				<field name="spacerthanks" type="note" class="alert alert-light"
+					description="PLG_HYPHENATEGHSVS_SPACERTHANKS"/>
+			</fieldset><!--/thanks-->
 
 			<fieldset name="hypenateSelectors" label="PLG_HYPHENATEGHSVS_FIELDSET_SELECTORS" description="">
 
@@ -101,14 +91,12 @@
 				</field>
 			</fieldset><!--/hypenateSelectors-->
 
-			<fieldset name="languages" label="PLG_HYPHENATEGHSVS_FIELDSET_LANGUAGES" description="">
+			<fieldset name="languages" label="PLG_HYPHENATEGHSVS_FIELDSET_LANGUAGES">
 
 <!--LANGUAGES-->
-				<field name="languagesspacerHyphenopoly" type="plgSystemHyphenateGhsvs.longdescription"
-					descriptiontext="PLG_HYPHENATEGHSVS_LANGUAGES_HYPHENOPOLY_DESC"
-					hiddenLabel="true"
-					additionalClass="languages"
-					contentToggler="true" />
+				<field name="languagesspacerHyphenopoly" type="note" class="alert alert-info" close="true"
+					label="PLG_HYPHENATEGHSVS_LANGUAGES"
+					description="PLG_HYPHENATEGHSVS_LANGUAGES_HYPHENOPOLY_DESC"/>
 
 				<field name="languageshyphenopoly" type="plgSystemHyphenateGhsvs.subformlayout" min="1" max="100" multiple="true"
 					label="" description=""
@@ -120,33 +108,39 @@
 
 			</fieldset><!--/languages-->
 
-			<fieldset name="hypenateCss" label="PLG_HYPHENATEGHSVS_FIELDSET_CSS" description="">
-
-<!--ROBOTS-->
-				<field name="robotsNote" type="plgSystemHyphenateGhsvs.longdescription"
-					hiddenLabel="true"
-					descriptiontext="PLG_HYPHENATEGHSVS_ROBOTS_DESC" />
-
-				<field name="robots" type="radio" default="0"
-					label="PLG_HYPHENATEGHSVS_ROBOTS"
-					class="switcher btn-group btn-group-yesno">
-						<option value="0">JNO</option>
-						<option value="1">JYES</option>
-				</field>
+			<fieldset name="hypenateCss" label="PLG_HYPHENATEGHSVS_FIELDSET_CSS">
 
 <!--SETUP. Einstellungen für hyphenopolys "setup" block-->
-				<field name="setupHideNote" type="plgSystemHyphenateGhsvs.longdescription"
-					hiddenLabel="true"
-					descriptiontext="PLG_HYPHENATEGHSVS_SETUP_HIDE_DESC" />
+				<field name="setupHideNote" type="note" class="alert alert-info" close="true"
+					label="PLG_HYPHENATEGHSVS_SETUP_HIDE"
+					description="PLG_HYPHENATEGHSVS_SETUP_HIDE_DESC"/>
 
 				<!--Always use "" for JNO here!! NOT "0". -->
 				<field name="setup_hide" type="list" default="all"
-					label="PLG_HYPHENATEGHSVS_SETUP_HIDE"
-					description="" class="switcher btn-group btn-group-yesno">
+					label="PLG_HYPHENATEGHSVS_SETUP_HIDE">
 						<option value="all"/>
 						<option value="element"/>
 						<option value="text"/>
 						<option value="JNONE"/>
+				</field>
+
+				<field name="forceRenewalDaysSpacer" type="note" close="true" class="alert alert-info"
+					label="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS"
+					description="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS_DESC"/>
+
+				<field name="forceRenewalDays" type="number" min="0" default="90"
+					filter="integer"
+					label="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS"/>
+
+<!--ROBOTS-->
+				<field name="robotsNote" type="note" class="alert alert-info" close="true"
+					label="PLG_HYPHENATEGHSVS_ROBOTS"
+					description="PLG_HYPHENATEGHSVS_ROBOTS_DESC" />
+
+				<field name="robots" type="list" default="0"
+					label="PLG_HYPHENATEGHSVS_ROBOTS">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
 				</field>
 
 			</fieldset><!--/hypenateCss-->
@@ -172,14 +166,6 @@
 						<option value="0">JNO</option>
 						<option value="1">JYES</option>
 				</field>
-
-				<field name="forceRenewalDaysSpacer" type="note" close="true" class="alert alert-info"
-					label="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS"
-					description="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS_DESC"/>
-
-				<field name="forceRenewalDays" type="number" min="0" default="90"
-					filter="integer"
-					label="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS"/>
 
 			</fieldset><!--/debug-->
 
