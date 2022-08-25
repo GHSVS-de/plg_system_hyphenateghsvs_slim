@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2016-2019, G@HService Berlin Neukölln, Volkmar Volli Schlothauer. All rights reserved.
  * @license GNU General Public License version 3 or later; see LICENSE.txt; see also LICENSE_Hyphenopoly.txt
  * @authorUrl https://www.ghsvs.de
- * @link https://github.com/GHSVS-de/plg_system_hyphenateghsvs
+ * @link https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim
  */
 ?>
 <?php
@@ -17,10 +17,17 @@ namespace Joomla\Plugin\System\HyphenateGhsvs\Helper;
 
 use Joomla\CMS\Filter\InputFilter;
 use Joomla\Registry\Registry;
+use Joomla\CMS\Filesystem\Folder;
 
 class HyphenateGhsvsHelper
 {
 	protected static $loaded;
+
+	protected static $basepath = 'media/plg_system_hyphenateghsvs';
+
+	protected static $renewalFile;
+
+	protected static $renewalDays;
 
 	public static function prepareSelectors($string)
 	{
@@ -141,5 +148,61 @@ class HyphenateGhsvsHelper
 			)
 		);
 		$wa->useAsset($type, $wamName);
+	}
+
+	public static function renewal($params)
+	{
+		// Just once per page load.
+		if (!isset(self::$loaded['renewalDone']))
+		{
+			self::$renewalFile = JPATH_SITE . '/' . self::$basepath . '/renewal.log';
+
+			if (self::renewalCheck($params) === true)
+			{
+				$root = JPATH_SITE . '/' . self::$basepath;
+				$forceRenewals = [
+					'/js/_byPlugin',
+				];
+
+				foreach ($forceRenewals as $item)
+				{
+					if (is_dir($root . $item))
+					{
+						Folder::delete($root . $item);
+					}
+
+					if (!is_dir($root . $item))
+					{
+						Folder::create($root . $item);
+					}
+				}
+
+				file_put_contents(self::$renewalFile, time() + self::$renewalDays);
+			}
+
+			self::$loaded['renewalDone'] = 1;
+		}
+	}
+
+	protected static function renewalCheck($params)
+	{
+		self::$renewalDays = $params->get('forceRenewalDays', 90) * 24 * 60 * 60;
+
+		// User selected 0.
+		if (!self::$renewalDays)
+		{
+			return true;
+		}
+		else
+		{
+			$firstDate = (int) file_get_contents(self::$renewalFile);
+
+			if (!$firstDate || time() > ($firstDate + self::$renewalDays))
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 }
