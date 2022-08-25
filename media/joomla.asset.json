@@ -12,22 +12,6 @@
 			"attributes": {
 				"id": "plg_system_hyphenateghsvs-add_hypenate_css"
 			}
-		},
-		{
-			"name": "plg_system_hyphenateghsvs.vanilla",
-			"description": "Contains basic functions for setting .hyphenate/.donthyphenate classes.",
-			"type": "script",
-			"uri": "plg_system_hyphenateghsvs/hyphenateghsvsVanilla.js",
-			"weight": -1000,
-			"version": "{{version}}"
-		},
-		{
-			"name": "nur-ein-test",
-			"description": "",
-			"type": "script",
-			"uri": "plg_system_hyphenateghsvs/hyphenateghsvsVanilla.js",
-			"weight": -1000,
-			"version": "{{versionSub}}"
 		}
 	]
 }

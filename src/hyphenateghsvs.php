@@ -6,7 +6,7 @@
  * @copyright Copyright (C) 2016-2019, G@HService Berlin Neukölln, Volkmar Volli Schlothauer. All rights reserved.
  * @license GNU General Public License version 3 or later; see LICENSE.txt; see also LICENSE_Hyphenopoly.txt
  * @authorUrl https://www.ghsvs.de
- * @link https://github.com/GHSVS-de/plg_system_hyphenateghsvs
+ * @link https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim
  */
 /*
 This plugin uses Hyphenopoly.js - client side hyphenation for webbrowsers.
@@ -42,18 +42,20 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 {
 	protected $app;
 
-	protected $autoloadLanguage = true;
-
 	public static $basepath = 'plg_system_hyphenateghsvs';
 
+	// Configured and active languages.
 	protected $require = [];
 
+	// Configured associated language fallbacks.
 	protected $fallbacks = [];
 
 	protected $setup = [];
 
+	// HyphonopolyJS paths. E.g. mainDir.
 	protected $paths = [];
 
+	// HyphonopolyJS event functions.
 	protected $handleEvent = [];
 
 	// Stupid but B\C. "uncompressed" removed.
@@ -91,7 +93,9 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 		$nonce = HyphenateGhsvsHelper::getNonce($this->app);
 		$doc = $this->app->getDocument();
 		$version = JDEBUG ? time() : HyphenateGhsvsHelper::getMediaVersion();
+		$combinedJs = [];
 
+		// Always load basic CSS with .hypenate/.donthyphenate rules if user selected.
 		if ($this->params->get('add_hypenate_css', 0))
 		{
 			if ($wa)
@@ -107,6 +111,7 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 			}
 		}
 
+		// Did user configure any selectors?
 		$hyphenate     = HyphenateGhsvsHelper::prepareSelectors($this->params->get('hyphenate', ''));
 		$donthyphenate = HyphenateGhsvsHelper::prepareSelectors($this->params->get('donthyphenate', ''));
 
@@ -118,20 +123,41 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 			return;
 		}
 
-		// Prepare $this->require and $this->fallbacks
+		// Load always to insert hyphenate/donthyphenate classes in HTML.
+		$combinedJs[] = file_get_contents(JPATH_SITE . '/media/' . self::$basepath
+			. '/js/hyphenateghsvsVanilla.min.js');
+		$js = ';document.addEventListener("DOMContentLoaded", function(){';
+
+		if ($hyphenate)
+		{
+			$js .= 'var selectors = new Hyphenateghsvs("' . $hyphenate . '");';
+			$js .= 'selectors.addClass("hyphenate");';
+		}
+
+		if ($donthyphenate)
+		{
+			$js .= 'var selectors = new Hyphenateghsvs("' . $donthyphenate . '");';
+			$js .= 'selectors.addClass("donthyphenate");';
+		}
+
+		$js .= '})';
+		$combinedJs[] = $js;
+
+		// Clean folder /_byPlugin? There are the Hyphonopoly configuration JS files.
+		HyphenateGhsvsHelper::renewal($this->params);
+
+		// Collect configured languages and associated fallbacks.
+		// if no languages: FALSE.
 		$hasFound = HyphenateGhsvsHelper::getRequiredAndFallback(
 			$this->params,
 			$this->require,
 			$this->fallbacks
 		);
 
-		$hyphenopolyInit = '';
-
 		// Prepare some script snippets that shall be included in $js later on:
-		if ($hasFound)
-		{
-			if ($this->params->get('silenterrors') === 1)
-			{
+		if ($hasFound) {
+			// Suppress Hyphonopoly console messages.
+			if ($this->params->get('silenterrors') === 1) {
 				// "||||" is for removing double quotes in Json later on
 				$this->handleEvent['error'] = '||||function (e) {e.preventDefault();}||||';
 			}
@@ -147,63 +173,38 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 			];
 
 			$this->setup['hide'] = $this->params->get('setup_hide', 'all');
-			$hyphenopolyInit = $this->getHyphenopolyInit();
-			$doc->addCustomTag('<script' . $nonce . ' src="' . $this->getHyphenopolyLink() . '"></script>');
+			$combinedJs[] = $this->getHyphenopolyInit();
+			$combinedJs[] = file_get_contents(JPATH_SITE . '/media/' . self::$basepath
+				. '/js/hyphenopoly/Hyphenopoly_Loader.min.js');
 		}
 
-		// Build and include basic JS that adds classes hyphenate and donthyphenate.
-		// If an init() script snippet exists include it here, too.
-		$js = [];
+		$combinedJs = implode(';', $combinedJs);
+		$wamName = self::$basepath . 'Config';
 
-		if ($wa)
-		{
-			$wa->useScript('plg_system_hyphenateghsvs.vanilla');
+		// loadInline: Not implemented yet.
+		if (!($loadInline = $this->params->get('loadInline', 0))) {
+			$configFile = '_byPlugin/hyphenopolyInit-'
+				. hash('sha256', $combinedJs) . '.js';
+			$configFileAbs = JPATH_SITE . '/media/' . self::$basepath  . '/js/'
+				. $configFile;
+
+			if (!is_file($configFileAbs)) {
+				file_put_contents($configFileAbs, $combinedJs);
+			}
+
+			$file = self::$basepath . '/' . $configFile;
+
+			if ($wa) {
+				$wa->registerAndUseScript($wamName, $file, ['version' => $version], ['id' => $wamName, 'defer' => true]);
+			} else {
+				HTMLHelper::_('script', $file, ['relative' => true, 'version' => $version]);
+			}
+		} else {
+			if ($wa) {
+				$wa->addInline('script', $combinedJs, ['name' => $wamName], ['id' => $wamName]);
+			} else {
+				$doc->addScriptDeclaration($combinedJs);
 		}
-		else
-		{
-			$file = self::$basepath . '/hyphenateghsvsVanilla' . $this->min . '.js';
-			HTMLHelper::_(
-				'script',
-				$file,
-				['relative' => true, 'version' => $version]
-			);
-		}
-
-		$js[] = ';document.addEventListener("DOMContentLoaded", function(){';
-
-		if ($hyphenate)
-		{
-			$js[] = 'var selectors = new Hyphenateghsvs("' . $hyphenate . '");';
-			$js[] = 'selectors.addClass("hyphenate");';
-		}
-
-		if ($donthyphenate)
-		{
-			$js[] = 'var selectors = new Hyphenateghsvs("' . $donthyphenate . '");';
-			$js[] = 'selectors.addClass("donthyphenate");';
-		}
-
-		$js[] = '});';
-		$js[] = $hyphenopolyInit;
-		$js = implode('', $js);
-
-		if ($wa)
-		{
-			// inclusive init for Hyphenopoly_Loader.js.
-			$wa->addInline('script', $js, ["name" => "plg_system_hyphenateghsvs.HyphenopolyConfig"]);
-		}
-		else
-		{
-			// inclusive init for Hyphenopoly_Loader.js.
-			$doc->addScriptDeclaration($js);
-		}
-
-		if (!$hasFound)
-		{
-			// Stop processing.
-			$this->goOn(true, false);
-
-			return;
 		}
 	}
 
@@ -315,7 +316,10 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 
 	protected function getHyphenopolyInit()
 	{
+		// Languages configuration JS snippet.
 		$Hyphenoply = ['require' => $this->require];
+
+		// Other configuration JS snippets.
 		$dos = ['fallbacks', 'paths', 'handleEvent', 'setup'];
 
 		foreach ($dos as $do)
@@ -329,18 +333,9 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 		$Hyphenoply = json_encode($Hyphenoply, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
 		// Remove quotes around handleEvent functions:
-		$Hyphenoply = ';var Hyphenopoly = ' . str_replace(['"||||', '||||"'], '', $Hyphenoply) . ';';
+		$Hyphenoply = ';var Hyphenopoly = ' . str_replace(['"||||', '||||"'], '', $Hyphenoply);
 
 		return $Hyphenoply;
-	}
-
-	protected function getHyphenopolyLink()
-	{
-		return Path::clean(
-			Uri::root(true) . '/media/' . self::$basepath
-				. '/js/hyphenopoly/Hyphenopoly_Loader' . $this->min . '.js',
-			'/'
-		);
 	}
 
 	public static function getWa()
