@@ -1,7 +1,4 @@
 # PLG_SYSTEM_HYPHENATEGHSVS_SLIM aka PLG_SYSTEM_HYPHENATEGHSVS
-
-Work in progress. In Arbeit.
-
 Joomla system plugin. Hyphenation for browsers that do NOT support CSS property hyphens or do not support some languages.
 
 Intelligent Hyphenation for browsers that do NOT support CSS property `hyphens` or do not support languages that you can select in this plugin. See supported languages at https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim/tree/master/media/js/hyphenopoly/patterns
