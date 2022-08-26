@@ -68,9 +68,16 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 		'/plugins/system/hyphenateghsvs/language/en-GB/Add-hyphenate-CSS-rules.html',
 		'/plugins/system/hyphenateghsvs/language/de-DE/Log.html',
 		'/plugins/system/hyphenateghsvs/language/en-GB/Log.html',
+		'/plugins/system/hyphenateghsvs/language/de-DE/Tips-regarding-debugging.html',
+		'/plugins/system/hyphenateghsvs/language/en-GB/Tips-regarding-debugging.html',
+		'/plugins/system/hyphenateghsvs/language/de-DE/Disable-Console-Errors.html',
+		'/plugins/system/hyphenateghsvs/language/en-GB/Disable-Console-Errors.html',
+		'/plugins/system/hyphenateghsvs/language/de-DE/Languages-Hyphenopoly.html',
+		'/plugins/system/hyphenateghsvs/language/en-GB/Languages-Hyphenopoly.html',
 
 		'/plugins/system/hyphenateghsvs/LICENSE_Hyphenator.txt',
 		'/plugins/system/hyphenateghsvs/fields/logbuttons.php',
+		'/plugins/system/hyphenateghsvs/fields/longdescription.php',
 		'/plugins/system/hyphenateghsvs/helper.php',
 	];
 

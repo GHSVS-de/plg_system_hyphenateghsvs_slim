@@ -124,6 +124,18 @@
 						<option value="JNONE"/>
 				</field>
 
+<!--SILENTERRORS-->
+				<field name="silenterrorsNote" type="note" class="alert alert-info" close="true"
+					label="PLG_HYPHENATEGHSVS_SILENTERRORS"
+					description="PLG_HYPHENATEGHSVS_SILENTERRORS_DESC"/>
+
+				<field name="silenterrors" type="list" default="0"
+					label="PLG_HYPHENATEGHSVS_SILENTERRORS"
+					filter="integer">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
+				</field>
+
 				<field name="forceRenewalDaysSpacer" type="note" close="true" class="alert alert-info"
 					label="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS"
 					description="PLG_SYSTEM_HYPHENATEGHSVS_FORCERENEWAL_DAYS_DESC"/>
@@ -144,30 +156,6 @@
 				</field>
 
 			</fieldset><!--/hypenateCss-->
-
-			<fieldset name="debug" label="PLG_HYPHENATEGHSVS_FIELDSET_DEBUG_AND_LOG">
-
-				<field name="debuggingNotes" type="plgSystemHyphenateGhsvs.longdescription"
-					hiddenLabel="true"
-					descriptiontext="PLG_SYSTEM_HYPHENATEGHSVS_DEBUGGING_NOTES"
-					contentToggler="true"/>
-
-<!--SILENTERRORS-->
-				<field name="silenterrorsNote" type="plgSystemHyphenateGhsvs.longdescription"
-					hiddenLabel="true"
-					additionalClass="silenterrors"
-					descriptiontext="PLG_HYPHENATEGHSVS_SILENTERRORS_DESC"
-					contentToggler="true"/>
-
-				<field name="silenterrors" type="radio" default="0"
-					class="switcher btn-group btn-group-yesno"
-					label="PLG_HYPHENATEGHSVS_SILENTERRORS"
-					filter="integer">
-						<option value="0">JNO</option>
-						<option value="1">JYES</option>
-				</field>
-
-			</fieldset><!--/debug-->
 
 		</fields>
 	</config>
