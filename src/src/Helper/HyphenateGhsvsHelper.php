@@ -11,7 +11,7 @@
 ?>
 <?php
 
-namespace Joomla\Plugin\System\HyphenateGhsvs\Helper;
+namespace GHSVS\Plugin\System\HyphenateGhsvs\Helper;
 
 \defined('JPATH_BASE') or die;
 
