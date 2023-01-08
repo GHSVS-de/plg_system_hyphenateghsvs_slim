@@ -1,8 +1,13 @@
 {
-	"$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "$schema": "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+  "name": "{{name}}",
+  "version": "{{version}}",
+	"versionSub": "{{versionSub}}",
+  "description": "{{description}}",
+  "license": "{{licenseLong}}",
 	"assets": [
 		{
-			"name": "plg_system_hyphenateghsvs.add_hypenate_css",
+			"name": "{{nameReal}}.add_hypenate_css",
 			"description": "Inline STYLE tag. See setting 'add_hypenate_css'.",
 			"content": ".hyphenate{word-wrap:break-word;-webkit-hyphens:auto;-moz-hyphens:auto;-ms-hyphens:auto;-o-hyphens:auto;hyphens:auto}.donthyphenate{word-wrap:break-word;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;-o-hyphens:none;hyphens:none}",
 			"inline": true,
@@ -10,7 +15,7 @@
 			"version": "{{version}}",
 			"weight": 1000,
 			"attributes": {
-				"id": "plg_system_hyphenateghsvs-add_hypenate_css"
+				"id": "{{nameReal}}-add_hypenate_css"
 			}
 		}
 	]

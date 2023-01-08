@@ -20,7 +20,7 @@ defined('JPATH_BASE') or die;
 if (version_compare(JVERSION, '4', 'lt'))
 {
 	JLoader::registerNamespace(
-		'Joomla\Plugin\System\HyphenateGhsvs',
+		'GHSVS\Plugin\System\HyphenateGhsvs',
 		__DIR__ . '/src',
 		false,
 		false,
@@ -35,7 +35,7 @@ use Joomla\CMS\Form\Form;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Uri\Uri;
-use Joomla\Plugin\System\HyphenateGhsvs\Helper\HyphenateGhsvsHelper;
+use GHSVS\Plugin\System\HyphenateGhsvs\Helper\HyphenateGhsvsHelper;
 use Joomla\Registry\Registry;
 
 class PlgSystemHyphenateGhsvs extends CMSPlugin
@@ -173,9 +173,12 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 			];
 
 			$this->setup['hide'] = $this->params->get('setup_hide', 'all');
-			$combinedJs[] = $this->getHyphenopolyInit();
+
+			// @since hyphenopoly 5.0.0 Loader must be loaded before Hyphenopoly.config().
 			$combinedJs[] = file_get_contents(JPATH_SITE . '/media/' . self::$basepath
 				. '/js/hyphenopoly/Hyphenopoly_Loader.min.js');
+
+			$combinedJs[] = $this->getHyphenopolyInit();
 		}
 
 		$combinedJs = implode(';', $combinedJs);
@@ -332,9 +335,11 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 
 		$Hyphenoply = json_encode($Hyphenoply, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
-		// Remove quotes around handleEvent functions:
-		$Hyphenoply = ';var Hyphenopoly = ' . str_replace(['"||||', '||||"'], '', $Hyphenoply);
-
+		// @since hyphenopoly v5.0.0. Use Hyphenopoly.config() instead.
+		//$Hyphenoply = ';var Hyphenopoly = ' . str_replace(['"||||', '||||"'], '', $Hyphenoply);
+		// Why str_replace? A:Remove quotes around handleEvent functions:
+		$Hyphenoply = ';Hyphenopoly.config('
+			. str_replace(['"||||', '||||"'], '', $Hyphenoply) . ')';
 		return $Hyphenoply;
 	}
 
