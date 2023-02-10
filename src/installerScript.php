@@ -95,6 +95,7 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/_hyphenopoly-version',
 		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/-uncompressed',
 		'/plugins/system/hyphenateghsvs/fields',
+		'/plugins/system/hyphenateghsvs/layouts',
 	];
 
 	/**
