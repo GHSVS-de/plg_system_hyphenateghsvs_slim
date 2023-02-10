@@ -16,15 +16,18 @@ Usage:
 
 If attributs loadjs or loadcss are missing their default value is TRUE => Assets will be loaded.
 */
+
+namespace GHSVS\Plugin\System\HyphenateGhsvs\Field;
+
 defined('JPATH_PLATFORM') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\Language\Text;
 
-class plgSystemHyphenateGhsvsFormFieldVersion extends FormField
+class VersionField extends FormField
 {
-	protected $type = 'version';
+	protected $type = 'Version';
 
 	protected function getInput()
 	{

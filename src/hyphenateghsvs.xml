@@ -43,21 +43,21 @@
 	</media>
 	{{namespace}}
 	<config{{addfieldprefix}}>
-		<fields name="params" addfieldpath="plugins/system/{{filename}}/fields">
+		<fields name="params">
 
 			<fieldset name="basic">
 				<field type="hidden" default="1" name="{{filename}}plugin" />
 
-				<field name="assetsbe" type="plgSystemHyphenateGhsvs.assetsbe" hidden="true"
+				<field name="assetsbe" type="AssetsBe" hidden="true"
 					loadjs="false" loadcss="true" />
 			</fieldset><!--/basic-->
 
 			<fieldset name="thanks" label="PLG_HYPHENATEGHSVS_FIELDSET_TANKS_AND_LICENSES">
 
-				<field name="version" type="plgSystemHyphenateGhsvs.version"
+				<field name="version" type="Version"
 					label="JVERSION"/>
 
-				<field name="spacerthanks" type="note" class="alert alert-light"
+				<field name="spacerthanks" type="note" class="alert alert-info"
 					description="PLG_HYPHENATEGHSVS_SPACERTHANKS"/>
 			</fieldset><!--/thanks-->
 
@@ -98,7 +98,7 @@
 					label="PLG_HYPHENATEGHSVS_LANGUAGES"
 					description="PLG_HYPHENATEGHSVS_LANGUAGES_HYPHENOPOLY_DESC"/>
 
-				<field name="languageshyphenopoly" type="plgSystemHyphenateGhsvs.subformlayout" min="1" max="100" multiple="true"
+				<field name="languageshyphenopoly" type="Subform" min="1" max="100" multiple="true"
 					label="" description=""
 					hiddenLabel="true"
 					formsource="plugins/system/hyphenateghsvs/src/Form/languages-subform-hyphenopoly.xml"
