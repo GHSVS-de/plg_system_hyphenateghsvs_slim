@@ -80,6 +80,7 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 		'/plugins/system/hyphenateghsvs/fields/logbuttons.php',
 		'/plugins/system/hyphenateghsvs/fields/longdescription.php',
 		'/plugins/system/hyphenateghsvs/helper.php',
+		'/plugins/system/hyphenateghsvs/hyphenateghsvs.php',
 	];
 
 	/**
