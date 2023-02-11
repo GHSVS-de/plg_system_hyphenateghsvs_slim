@@ -8,14 +8,6 @@
  * @authorUrl https://www.ghsvs.de
  * @link https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim
  */
-/*
-GHSVS 2019-02-01
-Usage:
-<field name="assetsbe" type="plgSystemHyphenateGhsvs.assetsbe" hidden="true"
-	loadjs="false" loadcss="true" />
-
-If attributs loadjs or loadcss are missing their default value is TRUE => Assets will be loaded.
-*/
 
 namespace GHSVS\Plugin\System\HyphenateGhsvs\Field;
 
