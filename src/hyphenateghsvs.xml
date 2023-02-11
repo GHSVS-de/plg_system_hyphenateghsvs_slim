@@ -23,14 +23,13 @@
 	<allowDowngrades>{{allowDowngrades}}</allowDowngrades>
 
 	<files>
-		<filename plugin="{{filename}}">{{filename}}.php</filename>
+		<!--<filename plugin="{{filename}}">{{filename}}.php</filename>-->
+		<folder plugin="{{filename}}">services</folder>
 		<filename>installerScript.php</filename>
 		<filename>package.json</filename>
 		<filename>LICENSE.txt</filename>
 		<filename>LICENSE_Hyphenopoly.txt</filename>
-		<folder>fields</folder>
 		<folder>language</folder>
-		<folder>layouts</folder>
 		<folder>src</folder>
 	</files>
 
@@ -101,7 +100,7 @@
 				<field name="languageshyphenopoly" type="Subform" min="1" max="100" multiple="true"
 					label="" description=""
 					hiddenLabel="true"
-					formsource="plugins/system/hyphenateghsvs/src/Form/languages-subform-hyphenopoly.xml"
+					formsource="plugins/system/hyphenateghsvs/form/languages-subform-hyphenopoly.xml"
 					layout="joomla.form.field.subform.repeatable-table" groupByFieldset="false"
 					default='{"languageshyphenopoly0":{"lang":"de","langTag":"de-at","langtext":"Silbentrennungsalgorithmus","active":"0"},"languageshyphenopoly1":{"lang":"de","langTag":"de-de","langtext":"Silbentrennungsalgorithmus","active":"0"},"languageshyphenopoly2":{"lang":"en-gb","langTag":"","langtext":"hyphenationalgorithm","active":"0"},"languageshyphenopoly3":{"lang":"en-gb","langTag":"en","langtext":"hyphenationalgorithm","active":"0"},"languageshyphenopoly4":{"lang":"en-us","langTag":"","langtext":"supercalifragilisticexpialidocious","active":"0"},"languageshyphenopoly5":{"lang":"en-us","langTag":"en-au","langtext":"supercalifragilisticexpialidocious","active":"0"},"languageshyphenopoly6":{"lang":"fr","langTag":"fr-fr","langtext":"Amortissements","active":"0"},"languageshyphenopoly7":{"lang":"fr","langTag":"fr-ca","langtext":"Amortissements","active":"0"},"languageshyphenopoly8":{"lang":"la","langTag":"","langtext":"comprovincialis","active":"0"},"languageshyphenopoly9":{"lang":"hy","langTag":"","langtext":"\u0540\u0561\u0575\u0565\u0580\u0565\u0576\u0576","active":"0"}}'
 				/>
