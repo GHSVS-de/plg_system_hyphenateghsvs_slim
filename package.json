@@ -2,16 +2,15 @@
 	"name": "plg_system_hyphenateghsvs_slim",
 	"nameReal": "plg_system_hyphenateghsvs",
 	"filename": "hyphenateghsvs",
-	"version": "2023.01.06",
-	"versionCompare": "2022.08.27",
+	"version": "2023.02.11",
+	"versionCompare": "2023.01.06",
 	"update": {
 		"type": "plugin",
 		"folder": "system",
 		"client": "site",
 		"tag": "stable",
 		"targetplatform": [
-			"3.*",
-			"4.*"
+			"4.[3456789]"
 		],
 		"namespace": "GHSVS\\Plugin\\System\\HyphenateGhsvs"
 	},
@@ -30,7 +29,6 @@
 		"lastTests": [
 			"PHP 8.0",
 			"PHP 8.1",
-			"Joomla 3.10",
 			"Joomla 4.2",
 			"Joomla 4.3-dev",
 			"Vivaldi",
@@ -39,7 +37,7 @@
 	},
 	"minimumPhp": "7.4.2",
 	"maximumPhp": "8.999.999",
-	"minimumJoomla": "3.10.0",
+	"minimumJoomla": "4.3.0",
 	"maximumJoomla": "4.9999.9999",
 	"allowDowngrades": "1",
 	"creationDate": "2022-08-01",
@@ -65,7 +63,7 @@
 		"hyphenopoly"
 	],
 	"private": false,
-	"description": "Joomla system plugin. Hyphenation for browsers that do NOT support CSS property hyphens or do not support some languages. Hyphenopoly-only variant.",
+	"description": "Joomla system plugin. Hyphenation for browsers that do NOT support CSS property hyphens or do not support some languages. Hyphenopoly-only variant. For Joomla 4.3+.",
 	"license": "GPL-3.0",
 	"repository": {
 		"type": "git",
