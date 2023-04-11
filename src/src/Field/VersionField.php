@@ -11,7 +11,7 @@
 
 namespace GHSVS\Plugin\System\HyphenateGhsvs\Field;
 
-defined('JPATH_PLATFORM') or die;
+defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\FormField;
