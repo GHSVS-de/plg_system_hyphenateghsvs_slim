@@ -65,7 +65,7 @@
 		"hyphenopoly"
 	],
 	"private": false,
-	"description": "Joomla system plugin. Hyphenation for browsers that do NOT support CSS property hyphens or do not support some languages. Hyphenopoly-only variant. For Joomla 4.3+.",
+	"description": "Joomla system plugin. Hyphenation for browsers that do NOT support CSS property hyphens or do not support some languages. Hyphenopoly-only variant. For Joomla 4.3+, Joomla 5.",
 	"license": "GPL-3.0",
 	"repository": {
 		"type": "git",
