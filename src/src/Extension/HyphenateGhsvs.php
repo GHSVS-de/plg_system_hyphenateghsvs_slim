@@ -3,30 +3,15 @@
  * @package plugin.system hyphenateghsvs for Joomla!
  * @version See hyphenateghsvs.xml
  * @author G@HService Berlin Neukölln, Volkmar Volli Schlothauer
- * @copyright Copyright (C) 2016-2019, G@HService Berlin Neukölln, Volkmar Volli Schlothauer. All rights reserved.
+ * @copyright Copyright (C) 2016-2020, G@HService Berlin Neukölln, Volkmar Volli Schlothauer. All rights reserved.
  * @license GNU General Public License version 3 or later; see LICENSE.txt; see also LICENSE_Hyphenopoly.txt
  * @authorUrl https://www.ghsvs.de
  * @link https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim
  */
-/*
-This plugin uses Hyphenopoly.js - client side hyphenation for webbrowsers.
-https://github.com/mnater/Hyphenopoly
-See LICENSE_Hyphenopoly.txt.
-*/
-?>
-<?php
-defined('JPATH_BASE') or die;
 
-if (version_compare(JVERSION, '4', 'lt'))
-{
-	JLoader::registerNamespace(
-		'GHSVS\Plugin\System\HyphenateGhsvs',
-		__DIR__ . '/src',
-		false,
-		false,
-		'psr4'
-	);
-}
+namespace GHSVS\Plugin\System\HyphenateGhsvs\Extension;
+
+\defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\Path;
@@ -38,10 +23,8 @@ use Joomla\CMS\Uri\Uri;
 use GHSVS\Plugin\System\HyphenateGhsvs\Helper\HyphenateGhsvsHelper;
 use Joomla\Registry\Registry;
 
-class PlgSystemHyphenateGhsvs extends CMSPlugin
+final class HyphenateGhsvs extends CMSPlugin
 {
-	protected $app;
-
 	public static $basepath = 'plg_system_hyphenateghsvs';
 
 	// Configured and active languages.
@@ -66,20 +49,12 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 	// Marker in params to identify myself in back-end.
 	private $meMarker = '"hyphenateghsvsplugin":"1"';
 
-	// Usable in other files via PlgSystemHyphenateGhsvs::$isJ3.
-	public static $isJ3 = true;
-
-	// Getable in other files via $wa =  PlgSystemHyphenateGhsvs::getWa().
+	// Getable in other files via $wa = \GHSVS\Plugin\System\HyphenateGhsvs\Extension\HyphenateGhsvs::getWa().
 	protected static $wa = null;
 
 	function __construct(&$subject, $config = [])
 	{
-		// NEIN!!!!!!!!!!!!!!!! Das darfst nicht in __construct!!!!
-		#if (Factory::getDocument()->getType() !== 'html')
-
 		parent::__construct($subject, $config);
-
-		self::$isJ3 = version_compare(JVERSION, '4', 'lt');
 	}
 
 	public function onBeforeCompileHead()
@@ -90,8 +65,8 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 		}
 
 		$wa = self::getWa();
-		$nonce = HyphenateGhsvsHelper::getNonce($this->app);
-		$doc = $this->app->getDocument();
+		$nonce = HyphenateGhsvsHelper::getNonce($this->getApplication());
+		$doc = $this->getApplication()->getDocument();
 		$version = JDEBUG ? time() : HyphenateGhsvsHelper::getMediaVersion();
 		$combinedJs = [];
 
@@ -215,7 +190,7 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 	{
 		// Sanitize subform fields.
 		if (
-			$this->app->isClient('administrator')
+			$this->getApplication()->isClient('administrator')
 			&& $context === 'com_plugins.plugin'
 			&& !empty($table->params) && is_string($table->params)
 			&& strpos($table->params, $this->meMarker) !== false
@@ -238,7 +213,7 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 				$cleans = [];
 				$params = new Registry($table->params);
 				$subformData = $params->get($fieldName);
-				$file = __DIR__ . '/src/Form/' . $file . '.xml';
+				$file = __DIR__ . '/form/' . $file . '.xml';
 
 				if (
 					!is_object($subformData) || !count(get_object_vars($subformData))
@@ -300,9 +275,9 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 		if (is_null($this->execute) || $refresh === true)
 		{
 			if (
-				!$this->app->isClient('site')
-				|| (!$this->params->get('robots', 0) && $this->app->client->robot)
-				|| $this->app->getDocument()->getType() !== 'html'
+				!$this->getApplication()->isClient('site')
+				|| (!$this->params->get('robots', 0) && $this->getApplication()->client->robot)
+				|| $this->getApplication()->getDocument()->getType() !== 'html'
 			) {
 				$this->execute = false;
 			}
@@ -345,7 +320,7 @@ class PlgSystemHyphenateGhsvs extends CMSPlugin
 
 	public static function getWa()
 	{
-		if (self::$isJ3 === false && empty(self::$wa))
+		if (empty(self::$wa))
 		{
 			self::$wa = Factory::getApplication()->getDocument()->getWebAssetManager();
 			self::$wa->getRegistry()->addExtensionRegistryFile('plg_system_hyphenateghsvs');

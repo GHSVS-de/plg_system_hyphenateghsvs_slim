@@ -76,9 +76,11 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 		'/plugins/system/hyphenateghsvs/language/en-GB/Languages-Hyphenopoly.html',
 
 		'/plugins/system/hyphenateghsvs/LICENSE_Hyphenator.txt',
+		'/plugins/system/hyphenateghsvs/fields/assetsbe.php',
 		'/plugins/system/hyphenateghsvs/fields/logbuttons.php',
 		'/plugins/system/hyphenateghsvs/fields/longdescription.php',
 		'/plugins/system/hyphenateghsvs/helper.php',
+		'/plugins/system/hyphenateghsvs/hyphenateghsvs.php',
 	];
 
 	/**
@@ -93,6 +95,8 @@ class plgSystemHyphenateGhsvsInstallerScript extends InstallerScript
 		'/plugins/system/hyphenateghsvs/myforms',
 		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/_hyphenopoly-version',
 		'/media/plg_system_hyphenateghsvs/js/hyphenopoly/-uncompressed',
+		'/plugins/system/hyphenateghsvs/fields',
+		'/plugins/system/hyphenateghsvs/layouts',
 	];
 
 	/**

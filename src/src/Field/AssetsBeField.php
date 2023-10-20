@@ -8,22 +8,17 @@
  * @authorUrl https://www.ghsvs.de
  * @link https://github.com/GHSVS-de/plg_system_hyphenateghsvs_slim
  */
-/*
-GHSVS 2019-02-01
-Usage:
-<field name="assetsbe" type="plgSystemHyphenateGhsvs.assetsbe" hidden="true"
-	loadjs="false" loadcss="true" />
 
-If attributs loadjs or loadcss are missing their default value is TRUE => Assets will be loaded.
-*/
-defined('JPATH_PLATFORM') or die;
+namespace GHSVS\Plugin\System\HyphenateGhsvs\Field;
+
+defined('_JEXEC') or die;
 
 use Joomla\CMS\Form\FormField;
 use Joomla\CMS\HTML\HTMLHelper;
 
-class plgSystemHyphenateGhsvsFormFieldAssetsBe extends FormField
+class AssetsBeField extends FormField
 {
-	protected $type = 'assetsbe';
+	protected $type = 'AssetsBe';
 
 	protected function getInput()
 	{

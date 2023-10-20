@@ -29,7 +29,7 @@ class HyphenateGhsvsHelper
 
 	protected static $renewalDays;
 
-	public static function prepareSelectors($string)
+	public static function prepareSelectors(string $string) : string
 	{
 		if (!trim($string))
 		{
@@ -61,7 +61,7 @@ class HyphenateGhsvsHelper
 	/**
 	 * Prepare/initialise $this->require and $this->fallbacks
 	 */
-	public static function getRequiredAndFallback($params, &$require, &$fallbacks)
+	public static function getRequiredAndFallback(Registry $params, &$require, &$fallbacks) : bool
 	{
 		$languages = $params->get('languageshyphenopoly', null);
 
@@ -95,12 +95,12 @@ class HyphenateGhsvsHelper
 		return !empty($require);
 	}
 
-	public static function removeJPATH_SITE($str)
+	public static function removeJPATH_SITE(string $str) : string
 	{
 		return str_replace(JPATH_SITE, '', $str);
 	}
 
-	public static function getMediaVersion()
+	public static function getMediaVersion() : string
 	{
 		if (!isset(self::$loaded[__METHOD__]))
 		{
@@ -115,7 +115,7 @@ class HyphenateGhsvsHelper
 	/*
 	csp_nonce of HTTP Header plugin
 	*/
-	public static function getNonce($app)
+	public static function getNonce($app) : string
 	{
 		if (!isset(self::$loaded[__METHOD__]))
 		{
@@ -133,7 +133,7 @@ class HyphenateGhsvsHelper
 	*/
 	public static function cloneAndUseWamAsset(String $type, String $wamName, array $options)
 	{
-		$wa = PlgSystemHyphenateGhsvs::getWa();
+		$wa = \GHSVS\Plugin\System\HyphenateGhsvs\Extension\HyphenateGhsvs::getWa();
 		$war = $wa->getRegistry();
 		$asset = $war->get($type, $wamName);
 		$war->remove($type, $wamName);
@@ -150,7 +150,7 @@ class HyphenateGhsvsHelper
 		$wa->useAsset($type, $wamName);
 	}
 
-	public static function renewal($params)
+	public static function renewal(Registry $params)
 	{
 		// Just once per page load.
 		if (!isset(self::$loaded['renewalDone']))
@@ -160,9 +160,7 @@ class HyphenateGhsvsHelper
 			if (self::renewalCheck($params) === true)
 			{
 				$root = JPATH_SITE . '/' . self::$basepath;
-				$forceRenewals = [
-					'/js/_byPlugin',
-				];
+				$forceRenewals = ['/js/_byPlugin'];
 
 				foreach ($forceRenewals as $item)
 				{
@@ -184,7 +182,7 @@ class HyphenateGhsvsHelper
 		}
 	}
 
-	protected static function renewalCheck($params)
+	protected static function renewalCheck(Registry $params) : bool
 	{
 		self::$renewalDays = $params->get('forceRenewalDays', 90) * 24 * 60 * 60;
 

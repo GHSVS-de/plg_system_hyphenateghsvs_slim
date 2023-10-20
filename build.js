@@ -3,9 +3,9 @@ const path = require('path');
 
 /* Configure START */
 const pathBuildKram = path.resolve("../buildKramGhsvs");
-const updateXml = `${pathBuildKram}/build/update.xml`;
-const changelogXml = `${pathBuildKram}/build/changelog.xml`;
-const releaseTxt = `${pathBuildKram}/build/release.txt`;
+const updateXml = `${pathBuildKram}/build/update_no-changelog.xml`;
+// const changelogXml = `${pathBuildKram}/build/changelog.xml`;
+const releaseTxt = `${pathBuildKram}/build/release_no-changelog.txt`;
 /* Configure END */
 
 const replaceXml = require(`${pathBuildKram}/build/replaceXml.js`);
@@ -58,112 +58,54 @@ let versionSub = '';
 
 	from = `./media`;
 	to = `./package/media`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	// Hyphenopoly_Loader.js loads ecplicitly Hyphenopoly.js which should be a minified one.
 	from = `${source}/Hyphenopoly.js`;
 	to = `${target}/Hyphenopoly.uncompressed.js`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	from = `${source}/Hyphenopoly_Loader.js`;
 	to = `${target}/Hyphenopoly_Loader.js`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	from = `${source}/min/Hyphenopoly_Loader.js`;
 	to = `${target}/Hyphenopoly_Loader.min.js`;;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	// Hyphenopoly_Loader.js loads ecplicitly Hyphenopoly.js which should be a minified one.
 	from = `${source}/min/Hyphenopoly.js`;
 	to = `${target}/Hyphenopoly.js`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	from = `${source}/min/patterns`;
 	to = `${target}/patterns`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	from = `${source}/LICENSE`;
 	to =  `${target}/LICENSE.txt`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	to =  `./package/LICENSE_Hyphenopoly.txt`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	// Used by plugin Thanks & Licenses.
 	to =  `./dist/LICENSE_Hyphenopoly.txt`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	from = `./package.json`;
 	to =  `./package/package.json`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	from = `./src`;
 	to = `./package`;
-	await fse.copy(from, to
-	).then(
-		answer => console.log(
-			pc.yellow(pc.bold(`Copied "${from}" to "${to}".`))
-		)
-	);
+	await helper.copy(from, to)
 
 	from = path.resolve('package', 'media', 'joomla.asset.json');
 	replaceXmlOptions.xmlFile = from;
 	await replaceXml.main(replaceXmlOptions);
 
-	await fse.copy(from, `./dist/joomla.asset.json`).then(
-		answer => console.log(pc.yellow(pc.bold(
-			`Copied "${from}" to "./dist".`)))
-	);
+	await helper.copy(from, `./dist/joomla.asset.json`)
 
 	const zipFilename = `${name}-${version}_${versionSub}.zip`;
 
@@ -171,10 +113,7 @@ let versionSub = '';
 	replaceXmlOptions.zipFilename = zipFilename;
 
 	await replaceXml.main(replaceXmlOptions);
-	await fse.copy(`${Manifest}`, `./dist/${manifestFileName}`).then(
-		answer => console.log(pc.yellow(pc.bold(
-			`Copied "${manifestFileName}" to "./dist".`)))
-	);
+	await helper.copy(`${Manifest}`, `./dist/${manifestFileName}`)
 
 	// ## Create zip file and detect checksum then.
 	const zipFilePath = path.resolve(`./dist/${zipFilename}`);
@@ -188,7 +127,7 @@ let versionSub = '';
 	replaceXmlOptions.checksum = await helper._getChecksum(zipFilePath);
 
 	// Bei diesen werden zuerst Vorlagen nach dist/ kopiert und dort erst "replaced".
-	for (const file of [updateXml, changelogXml, releaseTxt])
+	for (const file of [updateXml, releaseTxt])
 	{
 		from = file;
 		to = `./dist/${path.win32.basename(file)}`;
